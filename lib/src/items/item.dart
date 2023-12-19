@@ -546,15 +546,17 @@ class _LargeItem extends StatelessWidget {
               style: TextStyle(color: resolvedStyle.color),
               child: leading!,
             ),
-          Expanded(child: body),
+
           if (hasIcon)
             Padding(
-              padding: const EdgeInsetsDirectional.only(start: 8),
+              padding: const EdgeInsetsDirectional.only(end: 8),
               child: IconBox(
                 color: resolvedColor,
                 child: iconWidget ?? Icon(icon),
               ),
             ),
+
+          Expanded(child: body),
         ],
       );
     }
@@ -562,7 +564,7 @@ class _LargeItem extends StatelessWidget {
     return AnimatedMenuContainer(
       alignment: AlignmentDirectional.centerStart,
       constraints: BoxConstraints(minHeight: minHeight),
-      padding: _itemPadding(hasLeading: hasLeading),
+      padding: EdgeInsets.symmetric(horizontal: 16),
       child: body,
     );
   }

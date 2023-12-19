@@ -94,8 +94,8 @@ class IconBox extends StatelessWidget {
     }
 
     return _TextScaledSizedBox(
-      height: 22,
-      width: 20,
+      height: 30,
+      width: 28,
       child: IconTheme.merge(
         data: IconThemeData(
           color: color,

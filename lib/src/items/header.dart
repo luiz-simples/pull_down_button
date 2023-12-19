@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../pull_down_button.dart';
 import '../_internals/button.dart';
@@ -161,13 +162,14 @@ class _HeaderBody extends StatelessWidget {
     final minHeight = ElementSize.resolveLargeWithSubtitle(context);
 
     final isInAccessibilityMode = TextUtils.isInAccessibilityMode(context);
-    final maxLines = isInAccessibilityMode ? 3 : 2;
+    final maxLines = 1;
+    final titleSplit = title.split(" ");
+    String finalTitle = titleSplit.first;
+    if (finalTitle != titleSplit.last) finalTitle = "$finalTitle ${titleSplit.last}";
 
-    Widget body = Text(
-      title,
-      style: titleStyle.copyWith(
-        color: isHovered ? onHoverTextColor : null,
-      ),
+    Widget body = AutoSizeText(
+      finalTitle,
+      style: titleStyle.copyWith(color: isHovered ? onHoverTextColor : null),
       textAlign: TextAlign.start,
       overflow: TextOverflow.ellipsis,
       softWrap: false,
@@ -179,7 +181,7 @@ class _HeaderBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           body,
-          Text(
+          AutoSizeText(
             subtitle!,
             style: subtitleStyle,
             textAlign: TextAlign.start,
